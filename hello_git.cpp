@@ -1,3 +1,7 @@
-mkdir week1
-cd week1
-git init
+#include <iostream>
+using namespace std;
+
+int main()
+{    cout << "My first Git-tracked C++ program";
+    return 0;
+}
