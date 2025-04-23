@@ -1,4 +1,4 @@
-#include <iostream>
+q#include <iostream>
 #include <cstdlib>  // For rand() function
 #include <ctime>    // For time() function
 using namespace std;
