@@ -1,0 +1,86 @@
+#include<iostream>
+using namespace std;
+#include <cctype> 
+#include <array>
+#include <algorithm>
+#include <vector>
+#include <cmath>
+int average(int day1,int day2,int day3,int day4,int day5,int day6,int day7);
+int main(){
+    
+    int day1,day2,day3,day4,day5,day6,day7;
+    
+    cout << "Sales Analysis\n---------------" << endl;
+    
+    cout << "Enter Sales for Monday: ";
+    cin >> day1;
+    cout << "Enter Sales for Tuesday: ";
+    cin >> day2;
+    cout << "Enter Sales for Wednesday: ";
+    cin >> day3;
+    cout << "Enter Sales for Thursday: ";
+    cin >> day4;
+    cout << "Enter Sales for Friday: ";
+    cin >> day5;
+    cout << "Enter Sales for Saturday: ";
+    cin >> day6;
+    cout << "Enter Sales for Sunday: ";
+    cin >> day7;
+    
+    int arr[] = { day1, day2, day3, day4, day5, day6, day7 };
+    int n = sizeof(arr) / sizeof(arr[0]);
+    
+    int total = ((day1)+(day2)+(day3)+(day4)+(day5)+(day6)+(day7));
+    cout << "Total Sales: " << total << endl;
+    average(day1,day2,day3,day4,day5,day6,day7);
+    int av = (((day1)+(day2)+(day3)+(day4)+(day5)+(day6)+(day7))/7);
+    
+    cout <<"\n"<< endl;
+    
+    int min_num = *min_element(arr, arr + n);
+    cout << "The worst day was: " << min_num
+         << endl;
+        
+    int max_num = *max_element(arr, arr + n);
+    cout << "The best day was: " << max_num << "\n"
+         << endl;
+         
+    int aboveAv;
+    aboveAv = 0;
+    if (day1 > av){
+        aboveAv++;
+    }
+    if (day2 > av){
+        aboveAv++;
+    }
+    if (day3 > av){
+        aboveAv++;
+    }
+    if (day4 > av){
+        aboveAv++;
+    }
+    if (day5 > av){
+        aboveAv++;
+    }
+    if (day6 > av){
+        aboveAv++;
+    }
+    if (day7 > av){
+        aboveAv++;
+    }
+    
+    cout << "There were " << aboveAv << " Above average days\n" << endl;
+    
+    cout << "Weekend Stats:" << endl;
+    int weekend = (day6+day7);
+    //this only ever returned 0 and I'm not sure why:
+    //double percentage = ((weekend / total) * 100); 
+    cout << weekend << endl;
+    
+}
+
+int average(int day1,int day2,int day3,int day4,int day5,int day6,int day7){
+    
+    cout << "The average revenue per day is: " << ((day1+day2+day3+day4+day5+day6+day7)/7) << endl;
+    return 0;
+}
