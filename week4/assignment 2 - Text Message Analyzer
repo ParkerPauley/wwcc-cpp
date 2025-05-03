@@ -1,0 +1,121 @@
+#include<iostream>
+using namespace std;
+#include <cctype> 
+#include <algorithm>
+#include <vector>
+#include <cmath>
+#include <sstream>
+#include <string>
+
+int charFunc(string str);
+int main(){
+    
+    int message; 
+    
+    cout << "Text Message Analyzer\n" << "---------------------\n" << endl;
+    std::string str;
+    std::cout << "Enter your message: ";
+    std::getline(std::cin, str);
+    
+    cout << "\nMessage Analysis: " << endl;
+    charFunc(str);
+    cout << "\nWords longer than 5 characters: " << endl;
+    
+     int length = 4;
+
+    vector<string> s;
+    string word;
+    for (int i = 0; i < str.length(); i++) {
+        if (str[i] == ' ') {
+            s.push_back(word);
+            word = "";
+        } else {
+            word += str[i];
+        }
+    }
+    s.push_back(word);
+ 
+     vector<string> l;
+    for (int i = 0; i < s.size(); i++) {
+        if (s[i].length() > length) {
+            l.push_back(s[i]);
+        }
+    }
+ 
+    for (int i = 0; i < l.size(); i++) {
+        cout << "-" << l[i] << " \n";
+    }
+    cout << endl;
+    
+    cout << "\nProper Capitalization:" << endl;
+    
+    
+    
+    str[0] = toupper(str[0]);
+
+    for (size_t i = 1; i < str.length(); ++i) {
+        if (ispunct(str[i - 1]) && isspace(str[i])) {
+          
+            size_t j = i + 1;
+            while (j < str.length() && isspace(str[j])) {
+                ++j;
+            }
+            if (j < str.length())
+            {
+                str[j] = toupper(str[j]);
+            }
+        }
+    }
+    
+    cout << str << endl;
+    
+}
+
+int charFunc(string str){
+    int countchar = 0;
+    for (char c : str) {
+        if (c != ' ') {
+            countchar++;
+        }
+    }
+    
+    cout << countchar << " Charatcer(s)" << endl;
+    
+    int countwords = 0;
+    for (char c : str) {
+        if (c == ' ') {
+            countwords++;
+        }
+    }
+    countwords++;
+    cout << countwords << " Word(s)" << endl;
+    
+    int countsent = 0;
+    for (char c : str) {
+        if (c == '.') {
+            countsent++;
+        }
+        if (c == '!') {
+            countsent++;
+        }
+        if (c == '?') {
+            countsent++;
+        }
+    }
+    countwords++;
+    cout << countsent << " Sentence(s)" << endl;
+    
+    cout << "Average word length: " << (countchar)/(countwords) << endl;
+    
+    int emoji = 0;
+    if (str == ":"){
+        emoji++;
+    }
+    if (emoji == 0){
+        cout << "Contains Emoji: Yes" << endl;
+    }
+    if (emoji == 1){
+        cout << "Contains Emoji: No" << endl;
+    }
+    return 0;
+}
