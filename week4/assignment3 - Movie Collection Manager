@@ -1,0 +1,129 @@
+#include<iostream>
+using namespace std;
+#include <cctype> 
+#include <array>
+#include <algorithm>
+#include <vector>
+
+struct movie{
+    std::string Title;
+    std::string Director;
+    int release, duration;
+    double rating;
+    std::string Genre;
+};
+
+int main(){
+    
+    cout << "Movie Collection Manager" << "\n------------------------"  << endl;
+    
+    //----------------------------------------------
+    
+    cout << "\nMovie 1 " << endl;
+    movie movie1;
+    cout << "Enter Title: ";
+    cin >> movie1.Title;
+    cout << "Enter Director: ";
+    cin >> movie1.Director;
+    cout << "Enter Release Date: ";
+    cin >> movie1.release;
+    cout << "Enter Duration in minutes: ";
+    cin >> movie1.duration;
+    
+    cout << "Enter Rating: ";
+    cin >> movie1.rating;
+    
+    cout << "Enter Genre: ";
+    cin >> movie1.Genre;
+    //-------------------------
+    cout << "\nMovie 2 " << endl;
+    movie movie2;
+    cout << "Enter Title: ";
+    cin >> movie2.Title;
+    cout << "Enter Director: ";
+    cin >> movie2.Director;
+    cout << "Enter Release Date: ";
+    cin >> movie2.release;
+    cout << "Enter Duration in minutes: ";
+    cin >> movie2.duration;
+    
+    cout << "Enter Rating: ";
+    cin >> movie2.rating;
+    
+    cout << "Enter Genre: ";
+    cin >> movie2.Genre;
+    //-------------------------
+    cout << "\nMovie 3 " << endl;
+    movie movie3;
+    cout << "Enter Title: ";
+    cin >> movie3.Title;
+    cout << "Enter Director: ";
+    cin >> movie3.Director;
+    cout << "Enter Release Date: ";
+    cin >> movie3.release;
+    cout << "Enter Duration in minutes: ";
+    cin >> movie3.duration;
+    
+    cout << "Enter Rating: ";
+    cin >> movie3.rating;
+    
+    cout << "Enter Genre: ";
+    cin >> movie3.Genre;
+    
+    //-----------------------------------------
+    
+    cout << "Your movie collection: " << "\n----------------------" << endl;
+    cout << "\nMovie 1:" << endl;
+    cout << movie1.Title << endl;
+    cout << movie1.Director << endl;
+    cout << movie1.release << endl;
+    cout << movie1.duration << endl;
+    cout << movie1.rating << endl;
+    cout << movie1.Genre << endl;
+    //---------------------------
+    cout << "\nMovie 2:" << endl;
+    cout << movie2.Title << endl;
+    cout << movie2.Director << endl;
+    cout << movie2.release << endl;
+    cout << movie2.duration << endl;
+    cout << movie2.rating << endl;
+    cout << movie2.Genre << endl;
+    //---------------------------
+    cout << "\nMovie 3:" << endl;
+    cout << movie3.Title << endl;
+    cout << movie3.Director << endl;
+    cout << movie3.release << endl;
+    cout << movie3.duration << endl;
+    cout << movie3.rating << endl;
+    cout << movie3.Genre << endl;
+    
+    //------------------------------
+    
+    cout << "Movie stats:" << "\n------------" << endl;
+    cout << "Average rating: " << (movie1.rating+movie2.rating+movie3.rating)/3 << endl;
+    cout << "Longest Movie: " << endl;
+    if (movie1.duration >= movie2.duration && movie1.duration >= movie3.duration) {
+        cout << movie1.Title << " " << movie1.duration << endl;
+    } else if (movie2.duration >= movie1.duration && movie2.duration >= movie3.duration) {
+        cout << movie2.Title << " " << movie2.duration << endl;
+    } else {
+        cout << movie3.Title << " " << movie3.duration << endl;
+    }
+    
+        
+    int year;
+    cout << "Enter a year to find movies released after that year: ";
+    cin >> year;
+    cout << "Movies released after " << year << ": " << endl;
+    if (movie1.release > year){
+        cout << movie1.Title << " (" << movie1.release << ")" << endl;
+    }
+    if (movie2.release > year){
+        cout << movie2.Title << " (" << movie2.release << ")"  << endl;
+    }
+    if (movie3.release > year){
+        cout << movie3.Title << " (" << movie3.release << ")"  << endl;
+    }
+    
+}
+
