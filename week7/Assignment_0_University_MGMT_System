@@ -1,0 +1,82 @@
+//sorry for late submission, i've been very busy this week and got far behind
+//gonna be working through everything this weekend and trying to catch up
+
+#include<iostream>
+using namespace std;
+#include <cctype> 
+#include <array>
+using std::array;
+#include <algorithm>
+#include <vector>
+#include <string>
+#include <cstring>
+
+class student
+{
+    std::string name;
+    int ID;
+    double GPA;
+
+
+public:
+
+    student(std::string name, int ID, double GPA) : name(name), ID(ID), GPA(GPA) {}
+
+
+    string getname () const { return name; }
+    int getID () const { return ID; }
+    int getGPA () const {return GPA; }
+    
+    void updateGPA(double newGPA) { GPA = newGPA; }
+    void stateInfo() const {
+        std::cout << "Name: " << name << ", ID: " << ID << ", GPA: " << GPA << std::endl;
+    }
+};
+
+class course
+{
+    std::string code;
+    std::string name;
+    int credits;
+
+
+public:
+
+    course(std::string code, std::string name, int credits) : code(code), name(name), credits(credits) {}
+
+
+    string getcode () const { return code; }
+    string getname () const { return name; }
+    int getcredits () const {return credits; } 
+    void stateInfo() const {
+        std::cout << "Code: " << code << ", Name: " << name << ", Credits: " << credits << std::endl;
+    }
+};
+
+
+int main(){
+    student student1("Alex Johnson", 1001, 3.75);
+    student student2("Maria Garcia", 1002, 3.92);
+    student student3("Jamal Williams", 1003, 3.45);
+    
+    course course1("CS101", "Intro to Programming", 3.00);
+    course course2("MATH201", "Calculus", 4.00);
+    
+    cout << "UNIVERSITY MANAGMENT SYSTEM" << endl;
+    
+    cout <<"\nStudent Info: " << endl;
+
+    student1.stateInfo();
+    student2.stateInfo();
+    student3.stateInfo();
+    
+    cout <<"\nCourse Info: " << endl;
+    
+    course1.stateInfo();
+    course2.stateInfo();
+    
+    student2.updateGPA(4.0);
+    std::cout << "\nUpdated Maria's GPA:" << std::endl;
+    student2.stateInfo();
+
+}
