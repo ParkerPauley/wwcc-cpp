@@ -1,0 +1,88 @@
+//sorry for late submission, i've been very busy this week and got far behind
+//gonna be working through everything this week and trying to catch up
+
+#include<iostream>
+using namespace std;
+#include <cctype> 
+#include <array>
+using std::array;
+#include <algorithm>
+#include <vector>
+#include <string>
+#include <cstring>
+
+class rectangle
+{
+    int length;
+    int width;
+
+
+public:
+
+    rectangle(int length, int width) : length(length), width(width) {}
+
+    int getLength () const { return length; }
+    int getWidth () const {return width; }
+    
+    
+    void int_area() const {
+        int area = (length*width);
+        std::cout << "Area: " << area << std::endl;
+    }
+    
+    void double_area() const {
+        double area = (length*width);
+        std::cout << "Area: " << area << std::endl;
+    }
+    
+    void perimeter() const {
+        int perimeter = (length*2)+(width*2);
+        std::cout << "Perimeter: " << perimeter << std::endl;
+    }
+    
+    void stateInfo() const {
+        std::cout << "Rectangle:" << std::endl;
+        std::cout << "Length: " << length << ", Width: " << width << std::endl;
+        int_area();
+        perimeter();
+
+    }
+    
+    
+};
+
+class circle
+{
+    int radius;
+
+
+public:
+
+    circle(int radius) : radius(radius) {}
+
+    int getRadius () const { return radius; }
+    
+    void diameter() const {
+        int diameter = (radius/2);
+        std::cout << "Diameter: " << diameter << std::endl;
+    }
+    
+    void stateInfo() const {
+        std::cout << "Circle:" << std::endl;
+        std::cout << "Radius: " << radius <<  std::endl;
+        diameter();
+
+    }
+    
+    
+};
+
+int main(){
+    cout << "Shape calculator\n" << endl;
+    
+    rectangle rectangle1(15, 20);
+    rectangle1.stateInfo();
+    cout << "\n";
+    circle circle1(20);
+    circle1.stateInfo();
+}
