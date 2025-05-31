@@ -1,0 +1,116 @@
+//sorry for late submission, i've been very busy this week and got far behind
+//gonna be working through everything this week and trying to catch up
+
+#include<iostream>
+using namespace std;
+#include <cctype> 
+#include <array>
+using std::array;
+#include <algorithm>
+#include <vector>
+#include <string>
+#include <cstring>
+
+class author
+{
+    std::string name;
+    int year;
+
+
+public:
+
+    author(string name, int year) : name(name), year(year) {}
+
+    string getName () const { return name; }
+    int getYear () const {return year; }
+    
+    
+    void stateInfo() const {
+        cout << "Author: " << name << ", Born " << year << endl;
+
+    }
+    
+    
+};
+
+class book
+{
+    std::string title;
+    int year;
+    int id;
+    std::string author;
+
+
+public:
+
+    book(string title, int year, int id, string author) : title(title), year(year), id(id), author(author) {}
+
+    string getTitle () const { return title; }
+    int getYear () const {return year; }
+    int getID () const {return id; }
+    string getAuthor () const { return author; }
+    
+    
+    void stateInfo() const {
+        cout << "Title: " << title << ", Released " << year << ", ID: " << id << endl;
+
+    }
+    
+    
+};
+
+class library
+{
+    std::string name;
+    std::string adress;
+    int books;
+
+public:
+
+    library(string name, string adress, int books) : name(name), adress(adress), books(books) {}
+
+    string getName () const { return name; }
+    string getAdress () const {return adress; }
+    int getBooks () const {return books; }
+    
+    
+    void stateInfo() const {
+        cout << name << "\n" << adress << "\nNumber of books: " << books << endl;
+
+    }
+    
+    
+};
+
+int main(){
+    author author1("F. Scott Fitzgerald", 1896);
+    author author2("Harper Lee", 1926);
+    author author3("George Orwell", 1903);
+    
+    book book1("The Great Gatsby", 1925, 1001, "F. Scott Fitzgerald");
+    book book2 ("To kill a Mockingbird", 1960, 1002, "Harper Lee");
+    book book3 ("1984", 1949, 1003, "George Orwell");
+    book book4 ("Animal Farm", 1945, 1004, "George Orwell");
+    
+    library library1("Shady Sands Library", "1998 Avellone Drive, New California Republic", 4); //silly fallout reference
+    
+    cout << "Library managment system\n" << endl;
+    library1.stateInfo();
+    cout <<"\n" << endl;
+    
+    cout << "Book 1" << endl;
+    book1.stateInfo();
+    author1.stateInfo();
+    
+    cout << "\nBook 2" << endl;
+    book2.stateInfo();
+    author2.stateInfo();
+    
+    cout << "\nBook 3" << endl;
+    book3.stateInfo();
+    author3.stateInfo();
+    
+    cout << "\nBook 4" << endl;
+    book4.stateInfo();
+    author3.stateInfo();
+}
