@@ -1,5 +1,3 @@
-//Though this is more about the coding and less about game design, i thought i'd go over my process
-
 #include<iostream>
 using namespace std;
 #include <cctype> 
@@ -187,23 +185,6 @@ int main(){
     cout << "\n1. Stay and Help\n2. Leave\n";
     cin >> choice;
     switch (choice){
-    case 1:
-        clearScreen();
-        cout << "'Great! The necromancer is held up in the old church just north of town'" << endl;
-        if (pickedupArmor == true){
-            cout << "'Lets get you patched up a bit and you'll be on your way'" << endl;
-            while (playerHP < 125){
-                playerHP++;
-            }
-            cout << "Current HP: " << playerHP << endl;
-        }
-        else{
-            cout << "'Lets get you set up and you'll be on your way'" << endl;
-        }
-        cout << "\n-After a good nights rest, you're sent out to face the necromancer" << endl;
-        cout << "-The sky outside the town is dark, and a deep fog rests around the church" << endl;
-        cout << "\n-As you approach, you see 2 skeleton guards standing near the entrance" << endl;
-        break;
     case 2:
         clearScreen();
         cout << "-You decline the guards offer, leaving to town to face the necromancer on their own" << endl;
@@ -212,11 +193,64 @@ int main(){
         cout << "\n===GAME OVER===" << endl;
         break;
     }
+    clearScreen();
+    cout << "'Great! The necromancer is held up in the old church just north of town'" << endl;
+    if (pickedupArmor == true){
+        cout << "'Lets get you patched up a bit and you'll be on your way'" << endl;
+        while (playerHP < 125){
+            playerHP++;
+        }
+            cout << "Current HP: " << playerHP << endl;
+        }
+    else{
+            cout << "'Lets get you set up and you'll be on your way'" << endl;
+    }
+    cout << "\n-After a good nights rest, you're sent out to face the necromancer" << endl;
+    cout << "-The sky outside the town is dark, and a deep fog rests around the church" << endl;
+    
+    cout << "\n-As you approach, you see 2 skeleton guards standing near the entrance" << endl;
+    cout << "-Fighting them may prove risky, but they could possibly have loot" << endl;
+    cout << "\n1. Fight them\n2. Sneak Around\n";
+    cin >> choice;
+    switch (choice){
+    case 1:
+        clearScreen();
+        enterCombat(pickedupArmor, pickedupDagger,playerHP, isInCombat, "Skeletal Guards", 40, 2, 30, fistDamage, daggerDamage, potion, hasPotion);
+        cout << "\n-You open their bags and find two health potions" << endl;
+        cout << "-You use one to restore your HP, and keep the other" << endl;
+        hasPotion = true;
+        while (playerHP < 125){
+            playerHP++;
+        }
+        break;
+    case 2:
+        clearScreen();
+        cout << "-You successfully sneak past them" << endl;
+        break;
+    }
+    cout << "\n-You walk into the halls of the dying church, the walls are falling apart" << endl;
+    cout << "\n-The necromancer is sitting in a throne of skulls and bones" << endl;
+    cout << "\n'Foolish Mortal, you dare to challenge me?" << endl;
+    cout << "1. Fight\n2. Offer to serve him\n";
+    cin >> choice;
+    switch (choice){
+    case 1:
+        enterCombat(pickedupArmor, pickedupDagger,playerHP, isInCombat, "Necromancer", 120, 1, 35, fistDamage, daggerDamage, potion, hasPotion);
+        cout << "\n-You defeated the Necromancer!" << endl;
+        cout << "\n-You've saved the town from this evil, but there are more Necromancers out there..." << endl;
+        break;
+    case 2:
+        cout << "\n-You join the necromancer's forces" << endl;
+        cout << "\n-Learning his power, you follow their way of evil, spreading death and pain throughout the region" << endl;
+        break;
+    }
+    cout << "\n\n===THE END===" << endl;
+    cout << "\nThank you for playing!" << endl;
 }
-
 void enterCombat(bool pickedupArmor, bool pickedupDagger, int playerHP, bool isInCombat, std::string name, int HP, int amount, int damage, int fistDamage, int daggerDamage, int potion, bool hasPotion){
     isInCombat = true;
     cout << "\nEntering Combat...\n";
+    cout << " O |\n/|L|\n/ |" << endl;
     cout << "Current HP: " << playerHP << endl;
     if (pickedupArmor == true){
         cout << "Armor is equipped" << endl;
@@ -250,14 +284,14 @@ void enterCombat(bool pickedupArmor, bool pickedupDagger, int playerHP, bool isI
                         HP-=daggerDamage;
                         cout << "Enemy HP: " << HP << endl;
                         playerHP-=damage;
-                        enemyAttack(pickedupArmor, playerHP, "Undead Knight", 20, 60, 1);
+                        enemyAttack(pickedupArmor, playerHP, name, damage, HP, amount);
                     }
                     if (pickedupDagger == false){
                         cout << "\n-You attack the enemy with your fists, dealing 15 damage" << endl;
                         HP-=fistDamage;
                         cout << "Enemy HP: " << HP << endl;
                         playerHP-=damage;
-                        enemyAttack(pickedupArmor, playerHP, "Undead Knight", 20, 60, 1);
+                        enemyAttack(pickedupArmor, playerHP, name, damage, HP, amount);
                     }
                     
                     break;
@@ -268,14 +302,13 @@ void enterCombat(bool pickedupArmor, bool pickedupDagger, int playerHP, bool isI
                         playerHP = playerHP+=potion;
                         hasPotion = false;
                         cout << "Current HP: " << playerHP << endl;
-                        playerHP-=damage;
-                        enemyAttack(pickedupArmor, playerHP, "Undead Knight", 20, 60, 1);
+                        
                     }
                     if (hasPotion == false){
                         cout << "You don't have a health potion!" << endl;
                         cout << "Current HP: " << playerHP << endl;
                         playerHP-=damage;
-                        enemyAttack(pickedupArmor, playerHP, "Undead Knight", 20, 60, 1);
+                        enemyAttack(pickedupArmor, playerHP, name, damage, HP, amount);
                     }
                     
                     break;
@@ -283,7 +316,7 @@ void enterCombat(bool pickedupArmor, bool pickedupDagger, int playerHP, bool isI
                     clearScreen();
                     cout << "Skipping turn..." << endl;
                     playerHP-=damage;
-                    enemyAttack(pickedupArmor, playerHP, "Undead Knight", 20, 60, 1);
+                    enemyAttack(pickedupArmor, playerHP, name, damage, HP, amount);
                     break;
             }
         }
@@ -294,14 +327,10 @@ void enterCombat(bool pickedupArmor, bool pickedupDagger, int playerHP, bool isI
 }
 
 void enemyAttack(bool pickedupArmor, int playerHP, std::string name, int damage, int hp, int amount){
-    if (amount == 1){
-        cout << "The " << name << " hits you for " << damage << " points of damage!" << endl;
-        cout << "\nCurrent HP: " << playerHP << endl;
-    }
-    if (amount > 1){
-        cout << "The " << amount << " " << name << "s hit you for " << damage << " points of damage!" << endl;
-        cout << "\nCurrent HP: " << playerHP << endl;
-    }
+    
+    cout << "The " << name << " hits you for " << damage << " points of damage!" << endl;
+    cout << "\nCurrent HP: " << playerHP << endl;
+    
 
 }
 
