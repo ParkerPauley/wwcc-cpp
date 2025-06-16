@@ -67,6 +67,7 @@ int main(){
     std::string playerName;
     cout << "=======Enter Name:=======\n";
     cin >> playerName;
+    clearScreen();
     cout << "\n'Well..." << playerName << "...I can't say I've heard of you.'" << endl;
     cout << "\n-He seems to be inspecting you, particularly around your neck and arms." << endl;
     if (pickedupArmor == true){
@@ -110,6 +111,10 @@ int main(){
         case 3:
             clearScreen();
             cout << "'Amazing'" << endl;
+            if (pickedupDagger == false){
+                cout << "'Here's a spare dagger, I know it's not much but it's all I could find'" << endl;
+                pickedupDagger = true;
+            }
             cout << "'I'll let you look around, heres 3 gold pieces, come find me when you're ready'" << endl;
             gold+3;
             finishedConvo = true;
@@ -176,18 +181,36 @@ int main(){
     
     cout << "\n\n-You return to the guard" << endl;
     cout << "'Good you're ready'" << endl;
-    cout << "'Our scavenger teams keep running into BOSS, and we need someone to clear it out'" << endl;
+    cout << "'Our scavenger teams keep running into the necromancer, and we need someone to clear it out'" << endl;
     cout << "'To be honest, we're throwing everything we have at this beast, and you may be our last hope'" << endl;
     cout << "'But I'm not gonna force you to help us, say the word, and you leave now'" << endl;
     cout << "\n1. Stay and Help\n2. Leave\n";
     cin >> choice;
     switch (choice){
+    case 1:
+        clearScreen();
+        cout << "'Great! The necromancer is held up in the old church just north of town'" << endl;
+        if (pickedupArmor == true){
+            cout << "'Lets get you patched up a bit and you'll be on your way'" << endl;
+            while (playerHP < 125){
+                playerHP++;
+            }
+            cout << "Current HP: " << playerHP << endl;
+        }
+        else{
+            cout << "'Lets get you set up and you'll be on your way'" << endl;
+        }
+        cout << "\n-After a good nights rest, you're sent out to face the necromancer" << endl;
+        cout << "-The sky outside the town is dark, and a deep fog rests around the church" << endl;
+        cout << "\n-As you approach, you see 2 skeleton guards standing near the entrance" << endl;
+        break;
     case 2:
         clearScreen();
-        cout << "-You decline the guards offer, leaving to town to face the BOSS on their own" << endl;
+        cout << "-You decline the guards offer, leaving to town to face the necromancer on their own" << endl;
         cout << "-Their attempts fail, and the little people left starve or flee" << endl;
         cout << "-You have dammed the town, but you live on" << endl;
         cout << "\n===GAME OVER===" << endl;
+        break;
     }
 }
 
