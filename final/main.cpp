@@ -1,3 +1,23 @@
+/*
+   Interactive Story Game: The Undead Village
+   Author: Parker Pauley
+   Date: 6/17/2025
+   
+   ===Project Features===
+    * Variables (3+ types):  
+    * If/else statements:  
+    * Switch statement:  
+    * While Loop: 
+    * Function w/ return: 
+    * Void function: 
+    * Function w/ params: 
+    * Vector usage: Lines 
+    * Struct/Class: Lines 
+    * Enum: Lines 
+    * File Reading: 
+    * File Writing: 
+    * Modern Feature (): 
+   */
 #include<iostream>
 using namespace std;
 #include <cctype> 
@@ -8,11 +28,10 @@ using std::array;
 #include <string>
 #include <cstring>
 #include <cstdlib>
+#include <fstream>
 
 
-bool isInCombat = false;
-int numOfEnemies;
-bool isAlive = true;
+
 void enterCombat(bool pickedupArmor, bool pickedupDagger, int playerHP, bool isInCombat, std::string name, int HP, int amount, int damage, int fistDamage, int daggerDamage, int potion, bool hasPotion);
 void clearScreen();
 void enemyAttack(bool pickedupArmor, int playerHP, std::string name, int damage, int hp, int amount);
@@ -24,17 +43,27 @@ struct enemy{
     int amount;
 };
 
-int gold = 0;
-int fistDamage = 15;
-int daggerDamage = 25;
-int potion = 25;
-bool hasPotion = false;
-bool pickedupArmor = false;
-bool pickedupDagger = false;
-int playerHP = 100;
-bool finishedConvo = false;
+auto totalEncounters = 0;
+auto totalLevel = 0;
+auto isInCombat = false;
+auto isAlive = true;
+auto gold = 0;
+auto fistDamage = 15;
+auto daggerDamage = 25;
+auto potion = 25;
+auto hasPotion = false;
+auto pickedupArmor = false;
+auto pickedupDagger = false;
+auto playerHP = 100;
+auto finishedConvo = false;
+std::string playerName;
 
 int main(){
+    int level[4];
+    level[0] = 0;
+    level[1] = 100;
+    level[2] = 200;
+    level [3] = 300;
     playerHP = 75;
     cout << "-You wake up in a forest\n-You cannot seem to recall anything" << endl;
     cout << "\n-You spot a dead knight on the ground\n-What do you do?\n" << endl;
@@ -62,7 +91,7 @@ int main(){
     cout << "\n-You exit the forest on a path and walk to the gate of a fortified town\n" << endl;
     cout << "-A guard wielding a spear yells from a tower:" << endl;
     cout << "'You there! Stop! What's your name?'" << endl;
-    std::string playerName;
+    
     cout << "=======Enter Name:=======\n";
     cin >> playerName;
     clearScreen();
@@ -75,6 +104,7 @@ int main(){
         enterCombat(pickedupArmor, pickedupDagger,playerHP, isInCombat, "Undead Knight", 60, 1, 20, fistDamage, daggerDamage, potion, hasPotion);
         
         cout << "'Glad that's over, now as I was saying'" << endl;
+        
     }
     cout << "'Are you bit?'\n" << endl;
     cout << "1. 'No'\n2. 'Yes'" << endl;
@@ -89,6 +119,8 @@ int main(){
     cout << "'Alright, I'll open the gate up, but if you're lying it'll be a quick death'" << endl;
     cout << "\n-You step through the gates, it's a small but fortified town\n-Guards roam the streets as scavengers and survivors try to sell what they can" << endl;
     cout << "\n'Look, we don't normally let people in, but the fact that I don't know you is why you may be useful'" << endl;
+    cout << "\n-For succesfully entering the town, you gain " << level[1] << "xp and level up" << endl;
+    totalLevel++;
     finishedConvo = false;
     
     while (finishedConvo == false){
@@ -206,7 +238,9 @@ int main(){
             cout << "'Lets get you set up and you'll be on your way'" << endl;
     }
     cout << "\n-After a good nights rest, you're sent out to face the necromancer" << endl;
-    cout << "-The sky outside the town is dark, and a deep fog rests around the church" << endl;
+    cout << "\n-For your preperation, you gain " << level[2] << " xp and level up" << endl;
+    totalLevel++;
+    cout << "\n-The sky outside the town is dark, and a deep fog rests around the church" << endl;
     
     cout << "\n-As you approach, you see 2 skeleton guards standing near the entrance" << endl;
     cout << "-Fighting them may prove risky, but they could possibly have loot" << endl;
@@ -237,10 +271,14 @@ int main(){
     case 1:
         enterCombat(pickedupArmor, pickedupDagger,playerHP, isInCombat, "Necromancer", 120, 1, 35, fistDamage, daggerDamage, potion, hasPotion);
         cout << "\n-You defeated the Necromancer!" << endl;
+        cout << "\n-For your success, you gain " << level[3] << " xp and level up" << endl;
+        totalLevel++;
         cout << "\n-You've saved the town from this evil, but there are more Necromancers out there..." << endl;
         break;
     case 2:
         cout << "\n-You join the necromancer's forces" << endl;
+        cout << "\n-For your success, you gain " << level[3] << " xp and level up" << endl;
+        totalLevel++;
         cout << "\n-Learning his power, you follow their way of evil, spreading death and pain throughout the region" << endl;
         break;
     }
@@ -248,6 +286,7 @@ int main(){
     cout << "\nThank you for playing!" << endl;
 }
 void enterCombat(bool pickedupArmor, bool pickedupDagger, int playerHP, bool isInCombat, std::string name, int HP, int amount, int damage, int fistDamage, int daggerDamage, int potion, bool hasPotion){
+    totalEncounters++;
     isInCombat = true;
     cout << "\nEntering Combat...\n";
     cout << " O |\n/|L|\n/ |" << endl;
@@ -324,6 +363,19 @@ void enterCombat(bool pickedupArmor, bool pickedupDagger, int playerHP, bool isI
     }
     clearScreen();
     cout << "-You won!\n" << endl;
+    
+    std::ofstream outFile("game_summary.txt");
+
+    
+    if (outFile.is_open()) {
+        outFile << "=== Game Summary ===\n";
+        outFile << "Total Combat Encounters: " << totalEncounters << "\n";
+        outFile << "Final Level: " << totalLevel << "\n";
+        outFile.close();  
+        std::cout << "Game summary written to 'game_summary.txt'.\n";
+    } else {
+        std::cerr << "Error: Could not open file for writing.\n";
+    }
 }
 
 void enemyAttack(bool pickedupArmor, int playerHP, std::string name, int damage, int hp, int amount){
