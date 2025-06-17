@@ -24,7 +24,7 @@
 - game_summary.txt: Summary of events
 
 ## Challenges faced
-- Had issues with the combat system and trying to make sure player health was subtracted *every* time they were attacked, to accomplish this,s I calculated the health decrease separately from the function, and it ended up working
+- Had issues with the combat system and trying to make sure player health was subtracted *every* time they were attacked, to accomplish this, I calculated the health decrease separately from the function, and it ended up working
 
 ## Future Improvements
 ### I would like to add/improve on:
