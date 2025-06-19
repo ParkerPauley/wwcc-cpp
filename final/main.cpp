@@ -16,7 +16,7 @@
     * Enum: 33
     * File Reading: 32
     * File Writing: 371
-    * Modern Feature (): auto (in variables.h), range-based for loop (line 287)
+    * Modern Feature (): auto (in variables.h), ranged based for loop (line 287)
    */
 #include<iostream>
 using namespace std;
@@ -70,13 +70,13 @@ int main(){
          cout << "\n-You pick up and equip his armor, it's layered with bite marks and scratches.\n-The armor increases your max HP by 25 points\n" << endl;
         playerHP+=25;
         cout << "Current HP: " << playerHP << endl;
-        cout << "\n-His sword is cracked and damaged and beyond repair, but you find a dagger in his bag." << endl;
+        cout << "\n-His sword is cracked and damage and beyond repair, but you find a dagger in his bag." << endl;
         pickedupArmor = true;
         pickedupDagger = true;
         break;
     case 2:
         clearScreen();
-        cout << "\n-You decide to let him rest in peace" << endl;
+        cout << "\n-You decide to decide to let him rest in peace" << endl;
         pickedupArmor = false;
         pickedupDagger = false;
         break;
@@ -109,7 +109,7 @@ int main(){
         return 0;
     }
     clearScreen();
-    cout << "-He looks weary at first, but decides to trust you" << endl;
+    cout << "-He looks weary at first, be decides to trust you" << endl;
     cout << "'Alright, I'll open the gate up, but if you're lying it'll be a quick death'" << endl;
     cout << "\n-You step through the gates, it's a small but fortified town\n-Guards roam the streets as scavengers and survivors try to sell what they can" << endl;
     cout << "\n'Look, we don't normally let people in, but the fact that I don't know you is why you may be useful'" << endl;
@@ -123,8 +123,8 @@ int main(){
         switch (choice){
         case 1:
             clearScreen();
-            cout << "'You playing dumb or do you really not know?" << endl;
-            cout << "'I guess you might not, long story short, but the dead don't stay dead anymore'" << endl;
+            cout << "'You playing dumb or do you reall not know?" << endl;
+            cout << "'I guess you might not, long story short but the dead don't stay dead anymore'" << endl;
             cout << "'Make no mistake, they're not people, they don't think, they only attack and eat'" << endl;
             cout << "'Nobody is sure how or why it happened, personally I blame those Godless mathematicians'" << endl;
             break;
@@ -139,7 +139,7 @@ int main(){
                 cout << "'Here's a spare dagger, I know it's not much but it's all I could find'" << endl;
                 pickedupDagger = true;
             }
-            cout << "'I'll let you look around, here's 3 gold pieces, come find me when you're ready'" << endl;
+            cout << "'I'll let you look around, heres 3 gold pieces, come find me when you're ready'" << endl;
             gold+3;
             finishedConvo = true;
             break;
@@ -186,7 +186,7 @@ int main(){
                 cout << "\n'Let me see your blade...'" << endl;
                 cout << "-The man begins to channel an energy between his hands and your dagger\n-Purple and blue sparks circle the air around you\n-As they fly faster, there is a grand flash of light" << endl;
                 cout << "'It is done, use the power wisely'" << endl;
-                cout << "-Your dagger has been imbued with ancient power, increasing its damage to 35" << endl;
+                cout << "-Your dagger has been imbuned with ancient power, increasing it's damage to 35" << endl;
                 daggerDamage = 35;
                 finishedConvo = true;
                 break;
@@ -216,7 +216,7 @@ int main(){
     case 2:
         clearScreen();
         ending leave = BAD;
-        cout << "-You decline the guard's offer, leaving to town to face the necromancer on their own" << endl;
+        cout << "-You decline the guards offer, leaving to town to face the necromancer on their own" << endl;
         cout << "-Their attempts fail, and the little people left starve or flee" << endl;
         cout << "-You have dammed the town, but you live on" << endl;
         cout << "\n===GAME OVER===" << endl;
@@ -232,9 +232,9 @@ int main(){
             cout << "Current HP: " << playerHP << endl;
         }
     else{
-            cout << "'Let's get you set up and you'll be on your way'" << endl;
+            cout << "'Lets get you set up and you'll be on your way'" << endl;
     }
-    cout << "\n-After a good night's rest, you're sent out to face the necromancer" << endl;
+    cout << "\n-After a good nights rest, you're sent out to face the necromancer" << endl;
     cout << "\n-For your preperation, you gain " << level[2] << " xp and level up" << endl;
     totalLevel++;
     cout << "\n-The sky outside the town is dark, and a deep fog rests around the church" << endl;
@@ -385,7 +385,7 @@ int enemyAttack(bool pickedupArmor, int playerHP, std::string name, int damage, 
     playerHP-=damage;
     cout << "The " << name << " hits you for " << damage << " points of damage!" << endl;
     cout << "\nCurrent HP: " << playerHP << endl;
-
+    return 0;
 }
 
 void clearScreen() {
